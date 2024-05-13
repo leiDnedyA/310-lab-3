@@ -1,37 +1,28 @@
 class Set():
     def __init__(self):
         self.elements = {}
-
     def __bool__(self):
         return bool(self.elements)
-
     def __len__(self):
         return len(self.elements)
-
     def add(self, element):
         if element not in self.elements:
             self.elements[element] = 1
-
     def remove(self, element):
         if element in self.elements:
             del self.elements[element]
-
     def __contains__(self, element):
         return element in self.elements
 
 class Queue:
     def __init__(self):
         self.items = []
-
     def __bool__(self):
         return bool(self.items)
-
     def __len__(self):
         return len(self.items)
-
     def enqueue(self, item):
         self.items.append(item)
-
     def dequeue(self):
         return self.items.pop(0)
 
