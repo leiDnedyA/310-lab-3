@@ -14,17 +14,37 @@ class Set():
     def __contains__(self, element):
         return element in self.elements
 
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
 class Queue:
     def __init__(self):
-        self.items = []
+        self.head = None
+        self.tail = None
+        self.size = 0
     def __bool__(self):
-        return bool(self.items)
+        return self.size > 0
     def __len__(self):
-        return len(self.items)
+        return self.size
     def enqueue(self, item):
-        self.items.append(item)
+        new_node = Node(item)
+        if self.tail is None:
+            self.head = new_node
+        else:
+            self.tail.next = new_node
+        self.tail = new_node
+        self.size += 1
     def dequeue(self):
-        return self.items.pop(0)
+        if self.size == 0:
+            raise IndexError("Queue is empty")
+        data = self.head.data
+        self.head = self.head.next
+        if self.head is None:
+            self.tail = None
+        self.size -= 1
+        return data
 
 def numSquares(n: int) -> int:
     """
